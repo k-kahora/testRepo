@@ -1,8 +1,4 @@
 * What is emacs
-
-
-
-
 ** History
 
 Its initial release was in 1985 by Richard Stallman
@@ -10,6 +6,26 @@ Its initial release was in 1985 by Richard Stallman
 Its written in c and provides Emacs lisp the core language which is also written in c.
 
 Emacs isn't really a text editor.  Its a complete lisp interpreter.  This what makes it so extensible.
+
+* What its good at
+
+- Its low on system resources
+- Its highly extensible
+- Keyboard only movement and interaction
+  
+* What its bad at
+
+- Out of the box it looks terrible
+
+#+attr_org: :width 2400px
+#+attr_latex: :width 300px
+#+attr_html: :width 300px
+[[file:emacsStart.png]]
+
+- It takes a while to learn and is fundamentally different than most other workflows out there
+- The main enticement is ccompleteky customizable to what your work flow is
+
+
 
 * File management and display
 
@@ -32,7 +48,8 @@ Major modes can be active for certain file types.  The current major mode can ef
 - ~C-h v~ to look up a
 - ~C-h f~ to look up a function
 
-** The main feature is it's extensibilty
+  emacs is like playdoh you mold it into what you want
+** The main feature is it's extensible
 
 The behavior of emacs can be modified to almost no limit.  So many people have made refined packages and additions over the years.  There is a package for everything you could want.  And if there isn't you can make your own in emacs lisp
 
@@ -40,25 +57,38 @@ The behavior of emacs can be modified to almost no limit.  So many people have m
 
 **** Magit
 
+Super amazing git porcelain
+
 **** Dired
+
+Easy file navigation
 
 **** Ivy
 
+Fuzzy completion and nice ui
+
 **** Org mode
+
+Increble versatile mark down language
 
 **** Vterm
 
+Fully functional terminal emulator
+
 **** Org roam
+
+Zetaklsen notes
 
 **** LSP/DAP mode
 
+Intelli sense and debugging capability
+
 **** Tramp
+
+SSH into any server using local configuration
 
 **** And many more
 
-* What its good at
-- Its low on system resources
-- 
 * Its hard to learn
 - Its relies on key chords and bindings to complete anything in emacs.  
 * Extended movement  bindings
