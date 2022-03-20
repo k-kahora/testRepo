@@ -1,0 +1,140 @@
+* What is emacs
+
+
+
+
+** History
+
+Its initial release was in 1985 by Richard Stallman
+
+Its written in c and provides Emacs lisp the core language which is also written in c.
+
+Emacs isn't really a text editor.  Its a complete lisp interpreter.  This what makes it so extensible.
+
+* File management and display
+
+Buffers are the core Emacs feature, a buffer is simply like a tab its a loaded file or process that is either being displayed or is not.
+
+** Windows using windows you can make buffers display
+
+- ~C-x 2~ to split horizontally and ~C-x 3~ to split vertically.
+- ~C-x 0~ to kill window
+- ~C-x 1~ to kill all windows except the one currently occupied.
+
+** Modal editing
+
+Major modes can be active for certain file types.  The current major mode can effect how text is interpreted and what keybindings will do what will do.  Foe example when running python you can use =python-mode=
+
+** Its completely self documented
+
+- ~C-h~ for all the documentation commands
+- ~C-h k~ to look up a key binding
+- ~C-h v~ to look up a
+- ~C-h f~ to look up a function
+
+** The main feature is it's extensibilty
+
+The behavior of emacs can be modified to almost no limit.  So many people have made refined packages and additions over the years.  There is a package for everything you could want.  And if there isn't you can make your own in emacs lisp
+
+*** Best packages
+
+**** Magit
+
+**** Dired
+
+**** Ivy
+
+**** Org mode
+
+**** Vterm
+
+**** Org roam
+
+**** LSP/DAP mode
+
+**** Tramp
+
+**** And many more
+
+* What its good at
+- Its low on system resources
+- 
+* Its hard to learn
+- Its relies on key chords and bindings to complete anything in emacs.  
+* Extended movement  bindings
+** Word movement
+
+- ~M-f~ moves the pointer forward one word
+- ~M-b~ moves the pointer back one word
+- ~M-a~ goes to the beggining of a line
+- ~M-e~ goes to the end of a line
+
+** Line and Paragraph movement
+
+- ~M-}~ or ~M-a~ jumps to the end of a paragraph
+- ~M-{~ or ~M-e~ jumps to the end of a paragraph
+- ~C-n~ Next logical line
+- ~C-p~ previous logical line
+
+** Scrolling
+
+- ~M-v~ scroll up
+- ~C-v~ scroll down
+- ~C-M-v~ scroll other window
+
+** Navigating the buffer
+
+- ~M->~ moves to the end of a buffer
+- ~M-<~ moves to the beginning of a buffer
+  
+** Advanced/Progam movement
+
+- Move by s-expression such as =" "=, ' ', and [ ], ( ), {}, <>=
+
+- ~C-M-f~ for forward sexp
+
+- ~C-M-b~ for backward sexp
+
+- Go to line ~M-g g~ then enter the number
+
+- ~M-g M-n~ and ~M-g M-n~ for error navigation
+** Files
+ 
+
+- ~C-x C-f~ is used to find a file
+
+* Text selection
+
+- ~C-SPC ~ to palce mark
+
+  Just move around normally
+
+- ~C-w~ to cut and ~M-w~ to copy
+
+- ~C-y~ to yank and ~M-y~ to cycle yanks
+ 
+* Registers
+
+Super quick file navigation
+
+#+begin_src emacs-lisp
+
+     (set-register ?i (cons 'file "/home/malcolm2/.emacs.d/README.org"))
+
+#+end_src
+
+- ~C-x r j~ followed by the letter above
+
+* Imenu
+
+- ~M-x imenu~ jump to key places in emacs
+  
+  #+begin_src emacs-lisp
+
+(global-set-key (kbd "M-i") 'imenu)
+
+  #+end_src
+
+  
+* 
+
