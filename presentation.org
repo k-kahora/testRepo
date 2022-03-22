@@ -1,25 +1,62 @@
+#+TITLE:  Emacs
+#+AUTHOR: Malcolm Kahora
+#+BEAMER_HEADER: \institute{The Changelog}
+#+PROPERTY: comments yes
+#+PROPERTY: header-args :exports both :eval never-export
+#+OPTIONS: H:2
+#+BEAMER_THEME: CambridgeUS
+#+BEAMER_COLOR_THEME: default
+#+BEAMER_HEADER: \AtBeginSection{\frame{\sectionpage}}
+
 * What is emacs
-** History
 
-Its initial release was in 1985 by Richard Stallman
+Emacs is lisp interpreter, it  takes lisp code and evaluates it in real time
 
-Its written in c and provides Emacs lisp the core language which is also written in c.
+Its highly portable the configuration is written in e-lisp code so you can decide what dependices you want making it as minimal or as maximal as you want.
 
-Emacs isn't really a text editor.  Its a complete lisp interpreter.  This what makes it so extensible.
+Modes tell emacs to behave differently for whatever activity you happen to be doing.  For example =python-mode=, =org-mode=, =c-mode=, and so on.
 
-* What its good at
+(forward-char -10)
 
-- Its low on system resources
+
+Its been open source since its creation in 1984 so it has been hacked and modded for year.
+
+Because its a lisp interpreter written in c it can change the system while its running, its a lisp sandbox.
+
+#+attr_org: :width 200px
+[[file:mac.png]]
+
+
+* Open source
+
+Emacs is highly open source at any point you can see source code modify it and truly understand whats happening under the hood.
+
+#+attr_org: :width 600px
+[[file:gpl.png]]
+
+Under the copy left license.
+* What emacs excels at
+
+- Its low on system resources ( very minimal amount of bloat )
 - Its highly extensible
 - Keyboard only movement and interaction
+- Its really fun
+
+ 
+
+  If you like tinkering with things and making a super customizable workspace you might like Emacs.
+
+  
   
 * What its bad at
 
 - Out of the box it looks terrible
+  - Getting from 0 to productive is not to hard
+  - Getting from productive to comfortale will take some time.
+  - Its a very gradual process and ideally you would make small additions at a time.
 
-#+attr_org: :width 2400px
-#+attr_latex: :width 300px
-#+attr_html: :width 300px
+#+attr_org: :width 600px
+
 [[file:emacsStart.png]]
 
 - It takes a while to learn and is fundamentally different than most other workflows out there
@@ -27,70 +64,38 @@ Emacs isn't really a text editor.  Its a complete lisp interpreter.  This what m
 
 
 
-* File management and display
 
-Buffers are the core Emacs feature, a buffer is simply like a tab its a loaded file or process that is either being displayed or is not.
 
-** Windows using windows you can make buffers display
+* What I use it for
 
-- ~C-x 2~ to split horizontally and ~C-x 3~ to split vertically.
-- ~C-x 0~ to kill window
-- ~C-x 1~ to kill all windows except the one currently occupied.
+- Scheduling with org-gcal
+- git managemnt
+- Latex
+- Programming
 
-** Modal editing
+  
+* Lisp code example
 
-Major modes can be active for certain file types.  The current major mode can effect how text is interpreted and what keybindings will do what will do.  Foe example when running python you can use =python-mode=
+This code goes through every c file and puts a string right above it
 
-** Its completely self documented
+#+begin_src emacs-lisp
 
-- ~C-h~ for all the documentation commands
-- ~C-h k~ to look up a key binding
-- ~C-h v~ to look up a
-- ~C-h f~ to look up a function
+(defun mk/format-cfiles ( lab exercise )
+    "Adds a header based on the car c code header to all c files - you can also customize which files it does this for"
+  (interactive "nEnter a lab: \nnEnter a Exercise: ")
+  (let (list string)
+    (setq string (format "/*****************************************************************************/
+/*                 Malcolm Kahora CSC345-02 Lab %d Exercise %d                 */
+/*****************************************************************************/\n" lab exercise))
+    (setq list (find-file-noselect "*.c" nil nil t))
+    (dolist (element list)
+      (with-current-buffer element (beginning-of-buffer) (insert string)))))
 
-  emacs is like playdoh you mold it into what you want
-** The main feature is it's extensible
 
-The behavior of emacs can be modified to almost no limit.  So many people have made refined packages and additions over the years.  There is a package for everything you could want.  And if there isn't you can make your own in emacs lisp
 
-*** Best packages
+#+end_src
 
-**** Magit
 
-Super amazing git porcelain
-
-**** Dired
-
-Easy file navigation
-
-**** Ivy
-
-Fuzzy completion and nice ui
-
-**** Org mode
-
-Increble versatile mark down language
-
-**** Vterm
-
-Fully functional terminal emulator
-
-**** Org roam
-
-Zetaklsen notes
-
-**** LSP/DAP mode
-
-Intelli sense and debugging capability
-
-**** Tramp
-
-SSH into any server using local configuration
-
-**** And many more
-
-* Its hard to learn
-- Its relies on key chords and bindings to complete anything in emacs.  
 * Extended movement  bindings
 ** Word movement
 
@@ -105,6 +110,7 @@ SSH into any server using local configuration
 - ~M-{~ or ~M-e~ jumps to the end of a paragraph
 - ~C-n~ Next logical line
 - ~C-p~ previous logical line
+
 
 ** Scrolling
 
@@ -128,21 +134,131 @@ SSH into any server using local configuration
 - Go to line ~M-g g~ then enter the number
 
 - ~M-g M-n~ and ~M-g M-n~ for error navigation
+
+** I do love emacs
+
+If you like tinkering and getting things just as you like it its a a really good choice.
+Because its so customizable when you first download nothing will make sense and it will seem like a garbage program.
+
+It takes a while to get use to and confident with the keybindings.  Its opens source and self documented so plenty of resource to learn
+
+
 ** Files
- 
 
 - ~C-x C-f~ is used to find a file
 
-* Text selection
+  
 
-- ~C-SPC ~ to palce mark
+** Text selection
+
+- ~C-SPC~ to place mark
 
   Just move around normally
 
 - ~C-w~ to cut and ~M-w~ to copy
 
 - ~C-y~ to yank and ~M-y~ to cycle yanks
- 
+  
+
+* Window management and display
+
+Buffers are the core Emacs feature, a buffer is simply like a tab its a loaded file or process that is either being displayed or is not.
+
+** Windows using windows you can make buffers display
+
+- ~C-x 2~ to split horizontally and ~C-x 3~ to split vertically.
+- ~C-x 0~ to kill window
+- ~C-x 1~ to kill all windows except the one currently occupied.
+
+** Modal editing
+
+Major modes can be active for certain file types.  The current major mode can effect how text is interpreted and what keybindings will do what will do.  Foe example when running python you can use =python-mode=
+
+* Its completely self documented
+
+- ~C-h~ for all the documentation commands
+- ~C-h k~ to look up a key binding
+- ~C-h v~ to look up a
+- ~C-h f~ to look up a function
+
+  Emacs is like playdoh you mold it into what you want
+  
+* The main feature is it's extensible
+
+The behavior of emacs can be modified to almost no limit.  So many people have made refined packages and additions over the years.  There is a package for everything you could want.  And if there isn't you can make your own in emacs lisp
+
+*** Best packages
+
+**** Magit
+
+If you don't know the =git= command line or want something faster magit is an exceptional choice.  Incredible =git= porcelien.  The git command line is tricky to do complex tasks like rebasing.  Git is not very begginer freindly Magit is a good introduction and is exceptional at rebasing and complex git interactions.
+
+#+attr_org: :width 300px
+[[file:magit.png]]
+
+**** Dired
+
+Easy file navigation
+
+**** Ivy
+
+Fuzzy completion and nice ui
+
+**** Org mode
+***** org babel
+
+- c-code
+
+#+begin_src C
+
+  for (int i = 0; i < 20; i+=2) {
+
+  printf("%d ", i);
+
+  }
+
+#+end_src
+
+#+RESULTS:
+: 0 2 4 6 8 10 12 14 16 18
+
+- python
+  
+  #+begin_src python :results output
+
+for x in "banana":
+  print(x) 
+
+  #+end_src
+
+  #+RESULTS:
+  : b
+  : a
+  : n
+  : a
+  : n
+  : a
+
+
+***** org latex
+
+- ~C-c C-e~ a bunch of export options
+
+
+**** Vterm
+
+Fully functional terminal emulator
+
+**** LSP/DAP mode
+
+Intelli sense and debugging capability
+
+**** Tramp
+
+SSH into any server using local 
+
+#+attr_org: :width 300px
+[[file:ssh.png]]
 * Registers
 
 Super quick file navigation
@@ -155,16 +271,57 @@ Super quick file navigation
 
 - ~C-x r j~ followed by the letter above
 
-* Imenu
+* Configuration file
 
-- ~M-x imenu~ jump to key places in emacs
+Everything emacs does can be stored in a init file to fully customize your environment.
+
+
+* How to install
+
+** Windows
+  Use wsl2 as Emacs as a application on windows is horrendously slow and many things tend not to work.
+- Download wsl2
+- Download ubuntu
+- Download emacs
+
+#+attr_org: :width 800px
+[[file:wsl2.png]]
+
+
+
+** Mac
+
+- Mac use homebrew (I really don't know how)
+
+** Linux
+
+super easy just install the emacs package
+
+
+
+: sudo apt install emacs
+
+
+
+* Space macs
+
+if you don't want to deal with the configuration aspect you can download doom and or spacemacs.  They come preconfigured and are agreat option
+
+- =spacemacs=
+
+#+attr_org: :width 1000px
+[[file:space.png]]
   
-  #+begin_src emacs-lisp
 
-(global-set-key (kbd "M-i") 'imenu)
 
-  #+end_src
+* Doom
 
-  
-* 
+
+- =doom emacs=
+
+Another prebuilt configuration super nice huge community.
+
+#+attr_org: :width 300px
+[[file:doom.png]]
+
 
