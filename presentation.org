@@ -69,7 +69,7 @@ Under the copy left license.
 * What I use it for
 
 - Scheduling with org-gcal
-- git managemnt
+- git
 - Latex
 - Programming
 
@@ -134,14 +134,6 @@ This code goes through every c file and puts a string right above it
 - Go to line ~M-g g~ then enter the number
 
 - ~M-g M-n~ and ~M-g M-n~ for error navigation
-
-** I do love emacs
-
-If you like tinkering and getting things just as you like it its a a really good choice.
-Because its so customizable when you first download nothing will make sense and it will seem like a garbage program.
-
-It takes a while to get use to and confident with the keybindings.  Its opens source and self documented so plenty of resource to learn
-
 
 ** Files
 
