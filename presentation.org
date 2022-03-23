@@ -8,20 +8,24 @@
 #+BEAMER_COLOR_THEME: default
 #+BEAMER_HEADER: \AtBeginSection{\frame{\sectionpage}}
 
-* What is emacs
+* What is Emacs
 
 Emacs is lisp interpreter, it  takes lisp code and evaluates it in real time
 
-Its highly portable the configuration is written in e-lisp code so you can decide what dependices you want making it as minimal or as maximal as you want.
+Its highly portable the configuration is written in e-lisp so you can decide what dependices you want making it as minimal or as maximal as you want.
 
 Modes tell emacs to behave differently for whatever activity you happen to be doing.  For example =python-mode=, =org-mode=, =c-mode=, and so on.
 
-(forward-char -10)
-
-
-Its been open source since its creation in 1984 so it has been hacked and modded for year.
+Emacs can run lisp code anywhere just hit ~C-x C-e~
 
 Because its a lisp interpreter written in c it can change the system while its running, its a lisp sandbox.
+
+goes backwards 10 characters
+(forward-char -10)
+(+ 10 2)
+(* 10 2)
+
+Its been open source since its creation in 1984 so it has been hacked and modified for years.
 
 #+attr_org: :width 200px
 [[file:mac.png]]
@@ -35,18 +39,15 @@ Emacs is highly open source at any point you can see source code modify it and t
 [[file:gpl.png]]
 
 Under the copy left license.
-* What emacs excels at
+* What Emacs excels at
 
 - Its low on system resources ( very minimal amount of bloat )
 - Its highly extensible
 - Keyboard only movement and interaction
-- Its really fun
-
- 
+- Its fun
 
   If you like tinkering with things and making a super customizable workspace you might like Emacs.
 
-  
   
 * What its bad at
 
@@ -60,11 +61,7 @@ Under the copy left license.
 [[file:emacsStart.png]]
 
 - It takes a while to learn and is fundamentally different than most other workflows out there
-- The main enticement is ccompleteky customizable to what your work flow is
-
-
-
-
+- The main enticement is completely customizable to what your work flow is
 
 * What I use it for
 
@@ -72,7 +69,7 @@ Under the copy left license.
 - git
 - Latex
 - Programming
-
+- ssh
   
 * Lisp code example
 
@@ -96,7 +93,32 @@ This code goes through every c file and puts a string right above it
 #+end_src
 
 
+* Files
+
+- ~C-x C-f~ is used to find a file
+
+  
+
+* Window management and display
+
+Buffers are the core Emacs feature, a buffer is simply like a tab its a loaded file or process that is either being displayed or is not.
+
+** Windows using windows you can make buffers display
+
+- ~C-x 2~ to split horizontally and ~C-x 3~ to split vertically.
+- ~C-x 0~ to kill window
+- ~C-x 1~ to kill all windows except the one currently occupied.
+
+** Modal editing
+
+Major modes can be active for certain file types.  The current major mode can effect how text is interpreted and what keybindings will do what will do.  Foe example when running python you can use =python-mode=
+
 * Extended movement  bindings
+** Navigating the buffer
+
+- ~M->~ moves to the end of a buffer
+- ~M-<~ moves to the beginning of a buffer
+  
 ** Word movement
 
 - ~M-f~ moves the pointer forward one word
@@ -118,11 +140,6 @@ This code goes through every c file and puts a string right above it
 - ~C-v~ scroll down
 - ~C-M-v~ scroll other window
 
-** Navigating the buffer
-
-- ~M->~ moves to the end of a buffer
-- ~M-<~ moves to the beginning of a buffer
-  
 ** Advanced/Progam movement
 
 - Move by s-expression such as =" "=, ' ', and [ ], ( ), {}, <>=
@@ -135,12 +152,6 @@ This code goes through every c file and puts a string right above it
 
 - ~M-g M-n~ and ~M-g M-n~ for error navigation
 
-** Files
-
-- ~C-x C-f~ is used to find a file
-
-  
-
 ** Text selection
 
 - ~C-SPC~ to place mark
@@ -151,20 +162,6 @@ This code goes through every c file and puts a string right above it
 
 - ~C-y~ to yank and ~M-y~ to cycle yanks
   
-
-* Window management and display
-
-Buffers are the core Emacs feature, a buffer is simply like a tab its a loaded file or process that is either being displayed or is not.
-
-** Windows using windows you can make buffers display
-
-- ~C-x 2~ to split horizontally and ~C-x 3~ to split vertically.
-- ~C-x 0~ to kill window
-- ~C-x 1~ to kill all windows except the one currently occupied.
-
-** Modal editing
-
-Major modes can be active for certain file types.  The current major mode can effect how text is interpreted and what keybindings will do what will do.  Foe example when running python you can use =python-mode=
 
 * Its completely self documented
 
@@ -211,9 +208,6 @@ Fuzzy completion and nice ui
 
 #+end_src
 
-#+RESULTS:
-: 0 2 4 6 8 10 12 14 16 18
-
 - python
   
   #+begin_src python :results output
@@ -222,15 +216,6 @@ for x in "banana":
   print(x) 
 
   #+end_src
-
-  #+RESULTS:
-  : b
-  : a
-  : n
-  : a
-  : n
-  : a
-
 
 ***** org latex
 
